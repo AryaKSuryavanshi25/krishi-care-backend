@@ -31,10 +31,10 @@ router.get(
       );
 
       // Redirect to frontend auth callback page with token
-      res.redirect(`http://localhost:8080/auth/callback?token=${token}`);
+      res.redirect(`http://localhost:5173/auth/callback?token=${token}`);
     } catch (error) {
       console.error("Error generating token:", error);
-      res.redirect("http://localhost:8080/login?error=token_generation_failed");
+      res.redirect("http://localhost:5173/login?error=token_generation_failed");
     }
   }
 );

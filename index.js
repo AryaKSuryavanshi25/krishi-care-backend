@@ -7,6 +7,7 @@ const connectDB = require("./config/db");
 require("./config/passport");
 
 const authRoutes = require("./routes/auth.routes");
+const diseaseRoutes = require("./routes/disease.routes");
 
 const app = express();
 
@@ -20,10 +21,17 @@ app.use(passport.initialize());
 
 // Routes
 app.use("/auth", authRoutes);
+app.use("/api/disease", diseaseRoutes);
 
-app.get("/", (req, res) => {
-  res.send("Krishi Care Backend Running 🚜");
+// ✅ Backend health check (SAFE)
+app.get("/api/health", (req, res) => {
+  res.json({ status: "Krishi Care API running 🚜" });
 });
+
+// ❌ REMOVE ROOT ROUTE (VERY IMPORTANT)
+// app.get("/", (req, res) => {
+//   res.send("Krishi Care Backend Running 🚜");
+// });
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
